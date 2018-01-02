@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Wiki
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .container-fluid
+      .row
+        .col-md-12
+          = render 'shared/navbar'
+    .container
+      .row
+        .col-md-12
+          - flash.each do |name, msg|
+            = content_tag(:div, msg, class: 'alert alert-info')
+          = yield

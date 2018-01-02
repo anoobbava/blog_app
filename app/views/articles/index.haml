@@ -1,0 +1,8 @@
+.row
+  .col-md-8
+    -@articles.each do |article|
+      %h4
+        = link_to "#{article.title}", article_path(article)
+      = article.content
+  .col-md-4
+  = link_to 'New Article', new_article_path, class: 'btn btn-default'
