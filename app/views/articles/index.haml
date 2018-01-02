@@ -1,8 +1,9 @@
 .row
-  .col-md-8
+  .col-md-10
     -@articles.each do |article|
-      %h4
-        = link_to "#{article.title}", article_path(article)
-      = article.content
-  .col-md-4
-  = link_to 'New Article', new_article_path, class: 'btn btn-default'
+      .panel.panel-success
+        .panel-heading
+          %h4
+            = link_to "#{article.title}", article_path(article)
+        .panel-body
+          = article.content

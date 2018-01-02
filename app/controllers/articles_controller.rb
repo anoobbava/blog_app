@@ -5,7 +5,13 @@ class ArticlesController < ApplicationController
   before_action :fetch_article, only: [:show, :destroy, :edit, :update]
 
   def index
-    @articles = Article.all.order('created_at DESC')
+    @categories = Category.all
+    if params[:category]
+      category = Category.find_by_name(params[:category])
+      @articles = Article.where(category_id: category.id)
+    else
+      @articles = Article.all.order('created_at DESC')
+    end
   end
 
   def create
@@ -20,6 +26,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @categories = Category.all
   end
 
   def edit
@@ -38,16 +45,15 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if @article.destroy
-      flash[:notice] = 'Article Deleted'
-      redirect_to root_path
-    end
+    @article.destroy
+    flash[:notice] = 'Article Deleted'
+    redirect_to root_path
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, :category_id)
   end
 
   def fetch_article
