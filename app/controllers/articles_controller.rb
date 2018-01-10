@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
 
   before_action :article_params, only: [:create]
   before_action :fetch_article, only: [:show, :destroy, :edit, :update]
+  before_action :authenticate_user!, only: [:create, :new, :edit, :destroy]
 
   def index
     @categories = Category.all

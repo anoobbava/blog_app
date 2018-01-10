@@ -2,6 +2,6 @@
   .col-md-10
     = simple_form_for @article do |f|
       = f.input :title
-      = f.collection_select :category_id, Category.all, :id, :name, {prompt: 'Select Category'}
+      = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select', include_blank: true}
       = f.input :content
       = f.button :submit
