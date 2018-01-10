@@ -15,4 +15,10 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.min
+//= require jquery_ujs
+//= require select2
 
+// $(document).ready(function(){
+//   $('.connect_user_select').select2();
+// });
