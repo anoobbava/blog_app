@@ -1,2 +1,3 @@
 = link_to 'back', root_path, class: 'btn btn-default'
-= link_to 'delete', article_path(@article), method: :delete, class: 'btn btn-danger'
+- if user_signed_in?
+  = link_to 'delete', article_path(@article), method: :delete, class: 'btn btn-danger'
