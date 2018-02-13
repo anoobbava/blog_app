@@ -1,7 +1,12 @@
 .row
   .col-md-10
     = simple_form_for @article do |f|
-      = f.input :title
-      = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select', include_blank: true}
-      = f.input :content
+      = f.error_notification
+      = f.input :title, required: true
+      = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select'}
+      = f.input :content, required: true
+      - if params[:action] == 'edit'
+        = f.fields_for :links do |link_form|
+          = link_form.input :description
+          = link_form.input :address
       = f.button :submit
