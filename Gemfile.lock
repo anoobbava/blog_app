@@ -49,7 +49,6 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
-    byebug (9.1.0)
     capybara (2.16.1)
       addressable
       mini_mime (>= 0.1.3)
@@ -86,9 +85,6 @@ GEM
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     iniparse (1.4.4)
-    jbuilder (2.7.0)
-      activesupport (>= 4.2.0)
-      multi_json (>= 1.2)
     jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -106,7 +102,6 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
-    multi_json (1.12.2)
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -215,12 +210,10 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3, >= 3.3.7)
-  byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise (~> 4.3)
   haml (~> 5.0, >= 5.0.4)
-  jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   overcommit (~> 0.41.0)
@@ -235,7 +228,6 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   turbolinks (~> 5)
-  tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
 
