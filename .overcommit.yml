@@ -1,0 +1,47 @@
+PreCommit:
+  PryBinding:
+    enabled: true
+    required: true
+
+  MergeConflicts:
+    enabled: true
+    required: true
+
+  CoffeeLint:
+    enabled: true
+    required: true
+
+  RailsSchemaUpToDate:
+    enabled: true
+    required: true
+
+  LocalPathsInGemfile:
+    enabled: true
+    required: true
+
+  YamlSyntax:
+    enabled: true
+    required: true
+
+  RuboCop:
+    enabled: true
+    required: true
+    on_warn: fail
+    exclude:
+      - '**/db/schema.rb'
+
+  TrailingWhitespace:
+    enabled: true
+    exclude:
+      - '**/db/structure.sql' # Ignore trailing whitespace in generated files
+
+PostCheckout:
+  BundleCheck:
+    enabled: true
+    required: true
+#PostCheckout:
+#  ALL: # Special hook name that customizes all hooks of this type
+#    quiet: true # Change all post-checkout hooks to only display output on failure
+#
+#  IndexTags:
+#    enabled: true # Generate a tags file with `ctags` each time HEAD changes

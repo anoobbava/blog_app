@@ -1,9 +1,8 @@
 # articles Controller
 class ArticlesController < ApplicationController
-
   before_action :article_params, only: [:create]
-  before_action :fetch_article, only: [:show, :destroy, :edit, :update]
-  before_action :authenticate_user!, only: [:create, :new, :edit, :destroy]
+  before_action :fetch_article, only: %i[show destroy edit update]
+  before_action :authenticate_user!, only: %i[create new edit destroy update]
 
   def index
     @categories = Category.all
@@ -17,6 +16,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user_id = current_user.id
     if @article.save
       flash[:noticle] = 'Article Created'
       redirect_to @article
@@ -30,14 +30,15 @@ class ArticlesController < ApplicationController
     @categories = Category.all
   end
 
-  def edit
-  end
+  def edit; end
 
   def show
+    @links = @article.links
   end
 
   def update
     if @article.update(article_params)
+      update_to_links(params['article']['links']) if params['article']['links']
       redirect_to @article
       flash[:noticle] = 'Article updated'
     else
@@ -53,8 +54,18 @@ class ArticlesController < ApplicationController
 
   private
 
+  def update_to_links(hash_values)
+    link = Link.new
+    link.description = hash_values['description']
+    link.address = hash_values['address']
+    link.article_id = params[:id]
+    link.user_id = current_user.id
+    link.save
+  end
+
   def article_params
-    params.require(:article).permit(:title, :content, :category_id)
+    params.require(:article).permit(:title, :content, :category_id,
+                                    :description, :address)
   end
 
   def fetch_article

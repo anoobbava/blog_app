@@ -1,2 +1,17 @@
-= render 'form'
-= render 'links'
+.row
+  .col-md-10
+    .panel.panel-success
+      .panel-heading
+        %h4
+          = link_to "#{@article.title}", article_path(@article)
+      .panel-body
+        = @article.content
+    - if @links.present?
+      .panel.panel-info
+        .panel-heading
+          %h4
+            Citations
+        .panel-body
+          = @links.first.description
+          = @links.first.address
+    = render 'links'
