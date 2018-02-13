@@ -29,6 +29,8 @@ PreCommit:
     on_warn: fail
     exclude:
       - '**/db/schema.rb'
+      - '**/app/models/user.rb'
+
 
   TrailingWhitespace:
     enabled: true
