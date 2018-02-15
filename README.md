@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is clone application of wikipaedia.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Main Aim of this Application is to
+* create a post
+* able to view by all users
+* All registered users can edit the whole post
+* Citation is mandatory for editing the post
+### Additional work
+* Able to upload the images
+* comment on a post
+* star the posts
+* only the registerd user can delete the post
