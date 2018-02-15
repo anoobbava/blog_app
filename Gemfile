@@ -17,7 +17,6 @@ gem 'rails', '~> 5.1.2'
 gem 'sass-rails', '~> 5.0'
 gem 'select2-rails'
 gem 'simple_form', '~> 3.5'
-gem 'sqlite3'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 group :development, :test do
@@ -30,5 +29,9 @@ group :development do
   gem 'pry'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'sqlite3'
   gem 'web-console', '>= 3.3.0'
+end
+group :production do
+  gem 'pg'
 end
