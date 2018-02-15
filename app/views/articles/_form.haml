@@ -6,7 +6,8 @@
       = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select'}
       = f.input :content, required: true
       - if params[:action] == 'edit'
-        = f.fields_for :links do |link_form|
+        = f.fields_for :links, @article.links.build do |link_form|
+          = link_form.hidden_field :id
           = link_form.input :description
-          = link_form.input :address
+          = link_form.input :address, required: true
       = f.button :submit
