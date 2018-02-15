@@ -12,6 +12,8 @@
           %h4
             Citations
         .panel-body
-          = @links.first.description
-          = @links.first.address
+          - @links.each do |link|
+            = link.description
+            = link.address
+            %br
     = render 'links'

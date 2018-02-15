@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
-      flash[:noticle] = 'Article Created'
+      flash[:notice] = 'Article Created'
       redirect_to @article
     else
       render 'new'
@@ -38,9 +38,8 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      update_to_links(params['article']['links']) if params['article']['links']
       redirect_to @article
-      flash[:noticle] = 'Article updated'
+      flash[:notice] = 'Article updated'
     else
       render 'edit'
     end
@@ -54,18 +53,11 @@ class ArticlesController < ApplicationController
 
   private
 
-  def update_to_links(hash_values)
-    link = Link.new
-    link.description = hash_values['description']
-    link.address = hash_values['address']
-    link.article_id = params[:id]
-    link.user_id = current_user.id
-    link.save
-  end
-
   def article_params
     params.require(:article).permit(:title, :content, :category_id,
-                                    :description, :address)
+                                    links_attributes:
+                                    %i[description address id])
+          .merge(user_id: current_user.id)
   end
 
   def fetch_article
