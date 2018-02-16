@@ -14,8 +14,8 @@
     .container
       .row
         .col-md-10
-          - flash.each do |name, msg|
-            = content_tag(:div, msg, class: 'alert alert-info')
+          - flash.each do |type, message|
+            = js add_gritter(message, title: "#{type.capitalize}!", sticky: false, time: 3000, class_name: gritter_class_for(type))
           = yield
         .col-md-2
           %h3 Categories

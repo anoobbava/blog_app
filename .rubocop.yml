@@ -1,0 +1,64 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'spec/vcr/**/*'
+    - 'lib/support/**/*'
+    - 'tmp/**/*'
+    - 'api_doc/**/*'
+    - 'doc/**/*'
+    - 'node_modules/**/*'
+    - 'log/**/*'
+    - 'bin/**/*'
+    - 'db/migrate/**/*'
+    - 'db/schema.rb'
+    - 'config/initializers/*'
+    - 'app/admin/*'
+    - '*.yml'
+    - '**/**/*.yml'
+  TargetRubyVersion: 2.4
+
+
+Style/Encoding:
+  EnforcedStyle: always
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Style/Documentation:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 54
+
+Metrics/ClassLength:
+  Max: 324
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Metrics/LineLength:
+  Max: 901
+
+Metrics/MethodLength:
+  Max: 50
+
+Metrics/ParameterLists:
+  Max: 7
+
+Metrics/PerceivedComplexity:
+  Max: 13
+
+Style/StructInheritance:
+  Enabled: false
+
