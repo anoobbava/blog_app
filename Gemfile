@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -8,6 +10,7 @@ end
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.3'
+gem 'gritter', '~> 1.2'
 gem 'haml', '~> 5.0', '>= 5.0.4'
 
 gem 'jquery-rails'
@@ -15,7 +18,6 @@ gem 'overcommit', '~> 0.41.0'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.2'
 gem 'sass-rails', '~> 5.0'
-gem 'select2-rails'
 gem 'simple_form', '~> 3.5'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
@@ -23,6 +25,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 end
+
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
