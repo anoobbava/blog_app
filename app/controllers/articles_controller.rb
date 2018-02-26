@@ -1,4 +1,5 @@
-# articles Controller
+# encoding: utf-8
+
 class ArticlesController < ApplicationController
   before_action :article_params, only: [:create]
   before_action :fetch_article, only: %i[show destroy edit update]
@@ -7,7 +8,7 @@ class ArticlesController < ApplicationController
   def index
     @categories = Category.all
     if params[:category]
-      category = Category.find_by_name(params[:category])
+      category = Category.find_by(name: params[:category])
       @articles = Article.where(category_id: category.id)
     else
       @articles = Article.all.order('created_at DESC')
@@ -34,6 +35,8 @@ class ArticlesController < ApplicationController
 
   def show
     @links = @article.links
+    @comments = @article.comments
+    @comment = Comment.new(article: @article)
   end
 
   def update
@@ -61,6 +64,6 @@ class ArticlesController < ApplicationController
   end
 
   def fetch_article
-    @article = Article.find_by_id(params[:id])
+    @article = Article.find_by(id: params[:id])
   end
 end

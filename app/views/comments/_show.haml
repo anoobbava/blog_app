@@ -1,0 +1,10 @@
+#test_data
+  - if @comments.present?
+    .panel.panel-info
+      .panel-heading
+        %h4
+          Comments
+      .panel-body
+        - @comments.each do |comment|
+          = comment.description
+          %br
