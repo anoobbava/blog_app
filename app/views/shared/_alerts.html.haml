@@ -1,0 +1,3 @@
+#wiki-alerts
+  - flash.each do |type, message|
+    = js add_gritter(message, title: "#{type.capitalize}!", sticky: false, time: 3000, class_name: gritter_class_for(type))
