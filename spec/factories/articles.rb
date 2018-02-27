@@ -5,6 +5,10 @@ FactoryBot.define do
     title { Faker::Name }
     content { Faker::Lorem.paragraph }
     category_id 1
-    user_id 1
+  end
+
+  factory :article_invalid, class: Article do
+    title { Faker::Name }
+    content nil
   end
 end

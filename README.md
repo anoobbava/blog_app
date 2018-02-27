@@ -1,5 +1,5 @@
-{<img src="https://api.codeclimate.com/v1/badges/eeb114ad8a44da8e63a6/maintainability" />}[https://codeclimate.com/github/anoobbava/wiki_clone_app/maintainability]
-{<img src="https://api.codeclimate.com/v1/badges/eeb114ad8a44da8e63a6/test_coverage" />}[https://codeclimate.com/github/anoobbava/wiki_clone_app/test_coverage]
+<img src="https://api.codeclimate.com/v1/badges/eeb114ad8a44da8e63a6/maintainability" />
+<img src="https://api.codeclimate.com/v1/badges/eeb114ad8a44da8e63a6/test_coverage" />}
 # README
 
 This is clone application of wikipaedia.
