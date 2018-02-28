@@ -8,6 +8,7 @@ RSpec.describe ArticlesController, type: :controller do
     @params = FactoryBot.attributes_for(:article_valid)
     @invalid_params = FactoryBot.attributes_for(:article_invalid)
     @user = FactoryBot.create(:valid_user)
+    @user.confirm
     @article = FactoryBot.create(:article_valid, user: @user, category: @category)
     @comment = FactoryBot.create(:comment1, article: @article, user: @user)
   end
