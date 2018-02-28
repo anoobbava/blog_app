@@ -4,13 +4,14 @@ require 'spec_helper'
 
 RSpec.describe ArticlesController, type: :controller do
   before(:all) do
-    @category = FactoryBot.create(:category1)
-    @params = FactoryBot.attributes_for(:article_valid)
-    @invalid_params = FactoryBot.attributes_for(:article_invalid)
+    @category = FactoryBot.create(:valid_category)
+    @params = FactoryBot.attributes_for(:valid_article)
+    @invalid_params = FactoryBot.attributes_for(:invalid_article)
     @user = FactoryBot.create(:valid_user)
     @user.confirm
-    @article = FactoryBot.create(:article_valid, user: @user, category: @category)
-    @comment = FactoryBot.create(:comment1, article: @article, user: @user)
+    @article = FactoryBot.create(:valid_article, user: @user, category: @category)
+    @comment = FactoryBot.create(:valid_comment, article: @article, user: @user)
+    @link_params = FactoryBot.attributes_for(:valid_link,  article: @article, user: @user)
   end
 
   it 'render to index page' do
@@ -47,7 +48,7 @@ RSpec.describe ArticlesController, type: :controller do
 
   it 'update the article flash messages' do
     sign_in @user
-    put :update, params: { id: @article.id, article: @params }
+    put :update, params: { id: @article.id, article: @params, link_attributes: @link_params }
     expect(flash[:notice]).to be_present
   end
 

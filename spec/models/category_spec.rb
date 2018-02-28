@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe Category, type: :model do
   before(:all) do
-    @category = FactoryBot.create(:category1)
+    @category = FactoryBot.create(:valid_category)
   end
 
   it 'valid ategory' do

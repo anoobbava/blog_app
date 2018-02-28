@@ -24,7 +24,9 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.perform_deliveries = true
   # please change the port number when you are not running on 4000
-  config.action_mailer.default_url_options = { host: 'localhost:4000' }
+  # config.action_mailer.default_url_options = { host: 'localhost:4000' }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 end

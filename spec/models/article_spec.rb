@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe Article, type: :model do
   before(:all) do
-    @valid_article = FactoryBot.create(:article_valid)
+    @valid_article = FactoryBot.create(:valid_article)
   end
 
   it 'valid article' do
