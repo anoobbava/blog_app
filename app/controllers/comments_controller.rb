@@ -1,10 +1,13 @@
 # encoding: utf-8
 
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @article = Article.find(params[:article_id])
     comment = Comment.new(comment_params)
     if comment.save
+      ArticleMailer.comment_on_article(@article, comment).deliver_now
       flash.now[:success] = 'commented successfully'
       @comments = @article.comments
     else

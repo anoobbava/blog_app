@@ -8,12 +8,13 @@
         = @article.content
     #div_comment_show
       = render 'comments/show'
-    #div_comment_form
-      = simple_form_for [@article, @comment], remote: :true do |f|
-        = f.label 'Comment'
-        = f.text_field :description, class: 'form-control'
-        %br
-          = f.submit 'submit comment', class: 'btn btn-success'
+    - if user_signed_in?
+      #div_comment_form
+        = simple_form_for [@article, @comment], remote: :true do |f|
+          = f.label 'Comment'
+          = f.text_field :description, class: 'form-control'
+          %br
+            = f.submit 'submit comment', class: 'btn btn-success'
     #div_link_show
       - if @links.present?
         .panel.panel-info

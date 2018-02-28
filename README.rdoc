@@ -1,0 +1,23 @@
+{<img src="https://codeclimate.com/github/anoobbava/wiki_clone_app/badges/gpa.svg" />}[https://codeclimate.com/github/anoobbava/wiki_clone_app]
+{<img src="https://codeclimate.com/github/anoobbava/wiki_clone_app/badges/coverage.svg" />}[https://codeclimate.com/github/anoobbava/wiki_clone_app/coverage]
+{<img src="https://codeclimate.com/github/anoobbava/wiki_clone_app/badges/issue_count.svg" />}[https://codeclimate.com/github/anoobbava/wiki_clone_app]
+{<img src="https://travis-ci.org/anoobbava/wiki_clone_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/anoobbava/wiki_clone_app]
+
+
+# README
+
+This is clone application of wikipaedia.
+
+Main Aim of this Application is to
+* create a post
+* able to view by all users
+* All registered users can edit the whole post
+* Citation is mandatory for editing the post
+* implement gritter flash alerts for alerts
+### Additional work
+* Able to upload the images
+* comment on a post
+* star the posts
+* only the registerd user can delete the post
+* like and dislike the posts
+* when the post is deleted, the citation related to the post and also the comment related to post will be destroyed

@@ -1,10 +1,10 @@
-# user model
+# encoding: utf-8
+
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
-  devise :database_authenticatable, :registerable,
+  has_many :links, dependent: :destroy
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
          authentication_keys: [:login]
   attr_accessor :login
