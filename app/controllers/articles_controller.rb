@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
 
   def show
     @links = @article.links
-    @comments = @article.comments
+    @comments = @article.comments.order(id: :desc)
     @comment = Comment.new(article: @article)
   end
 

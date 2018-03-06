@@ -1,31 +1,31 @@
 .row
   .col-md-10
-    .panel.panel-success
+    .panel.panel-info
       .panel-heading
         %h4
           = link_to "#{@article.title}", article_path(@article)
       .panel-body
         = @article.content
+.row
+  .col-md-8
+    .panel.panel-login
+      .panel-heading
+        .row
+          .col-xs-12
+            %a#register-form-link{:href => "#"} POST COMMENT
+        %hr/
+      .panel-body
+        .row
+          .col-sm-12
+            #register-form
+              = simple_form_for [@article, @comment], remote: :true do |f|
+                .form-group
+                  .row
+                    .col-sm-6.col-sm-offset-3
+                  = f.text_field :description, class: 'form-control'
+                .form-group
+                  .row
+                    .col-sm-6.col-sm-offset-3
+                      %input#register-submit.form-control.btn.btn-register{:name => "register-submit", :tabindex => "4", :type => "submit", :value => "Comment"}/
     #div_comment_show
       = render 'comments/show'
-    - if user_signed_in?
-      #div_comment_form
-        = simple_form_for [@article, @comment], remote: :true do |f|
-          = f.label 'Comment'
-          = f.text_field :description, class: 'form-control'
-          %br
-            = f.submit 'submit comment', class: 'btn btn-success'
-    #div_link_show
-      - if @links.present?
-        .panel.panel-info
-          .panel-heading
-            %h4
-              Citations
-          .panel-body
-            - @links.each do |link|
-              = link.description
-              = link.address
-              %br
-.row
-  .col-md-10
-    = render 'links'

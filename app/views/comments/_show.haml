@@ -1,10 +1,29 @@
 #test_data
   - if @comments.present?
-    .panel.panel-info
-      .panel-heading
-        %h4
-          Comments
-      .panel-body
-        - @comments.each do |comment|
-          = comment.description
-          %br
+    %b
+      = @comments.count
+      Comments
+    .comments_class
+      - @comments.each do |comment|
+        .comments-area
+          .comment
+            .post-info
+              .left-area
+                %a.avatar{:href => "#"}
+                  %img{:alt => "Profile Image", :src => "images/avatar-1-120x120.jpg"}/
+              .middle-area
+                / %a.name{:href => "#"}
+                %b
+                  = comment.user.user_name
+                  / %b Katy Liu
+                %h6.date
+                  on
+                  = comment.created_at.strftime('%b %d, %Y at %I:%M %p')
+              .right-area
+                %h5.reply-btn
+                  %a{:href => "#"}
+                    %b REPLY
+            / post-info
+            %p
+              = comment.description
+
