@@ -1,31 +1,241 @@
-.row
-  .col-md-10
-    .panel.panel-info
-      .panel-heading
-        %h4
-          = link_to "#{@article.title}", article_path(@article)
-      .panel-body
-        = @article.content
-.row
-  .col-md-8
-    .panel.panel-login
-      .panel-heading
-        .row
-          .col-xs-12
-            %a#register-form-link{:href => "#"} POST COMMENT
-        %hr/
-      .panel-body
-        .row
-          .col-sm-12
-            #register-form
-              = simple_form_for [@article, @comment], remote: :true do |f|
-                .form-group
-                  .row
-                    .col-sm-6.col-sm-offset-3
-                  = f.text_field :description, class: 'form-control'
-                .form-group
-                  .row
-                    .col-sm-6.col-sm-offset-3
-                      %input#register-submit.form-control.btn.btn-register{:name => "register-submit", :tabindex => "4", :type => "submit", :value => "Comment"}/
-    #div_comment_show
-      = render 'comments/show'
+.slider
+%section.post-area
+  .container
+    .row
+      .col-lg-1.col-md-0
+      .col-lg-10.col-md-12
+        .main-post
+          .post-top-area
+            %h5.pre-title
+              = @article.category.name
+            %h3.title
+              %a{:href => "#"}
+                %b
+                  = @article.title
+            .post-info
+              .left-area
+                %a.avatar{:href => "#"}
+                  = image_tag(@article.image_url(:thumb).to_s)
+              .middle-area
+                %b
+                  = @article.user.user_name
+                %h6.date
+                  on
+                  = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
+            / post-info
+            %p.para
+              = @article.content.split('.')[0..2].join('.')
+          / post-top-area
+          .post-image
+            = image_tag(@article.image_url.to_s)
+          .post-bottom-area
+            %p.para
+              = @article.content.split('.')[3..@article.content.length].join('.')
+              %ul.tags
+                - @categories.each do |category|
+                  %li
+                    %a
+                      = category.name
+            .post-icons-area
+              %ul.post-icons
+                %li
+                  .glyphicon.glyphicon-heart
+                  57
+                %li
+                  .glyphicon.glyphicon-comment
+                  = @article.comments.count
+                %li
+                  .glyphicon.glyphicon-eye-open
+                  138
+              %ul.icons
+                %li SHARE :
+                %li
+                  %a{:href => "#"}
+                    facebook
+                %li
+                  %a{:href => "#"}
+                    twitter
+            .post-footer.post-info
+              .left-area
+                %a.avatar{:href => "#"}
+                  = image_tag(@article.image_url(:thumb).to_s)
+              .middle-area
+                %a.name{:href => "#"}
+                  %b
+                    = @article.user.user_name
+                %h6.date
+                  on
+                  = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
+            / post-info
+          / post-bottom-area
+        / main-post
+      / col-lg-8 col-md-12
+    / row
+  / container
+/ post-area
+%section.recomended-area.section
+  .container
+    .row
+      .col-lg-4.col-md-6
+        .card.h-100
+          .single-post.post-style-1
+            .blog-image
+              %img{:alt => "Blog Image"}/
+            %a.avatar{:href => "#"}
+              %img{:alt => "Profile Image"}/
+            .blog-info
+              %h4.title
+                %a{:href => "#"}
+                  %b
+                    How Did Van Gogh's Turbulent Mind Depict One of the Most Complex
+                    Concepts in Physics?
+              %ul.post-footer
+                %li
+                  %a{:href => "#"}
+                    .glyphicon-glyphicon-heart
+                      57
+                %li
+                  %a{:href => "#"}
+                    %i.ion-chatbubble>
+                    6
+                %li
+                  %a{:href => "#"}
+                    %i.ion-eye>
+                    138
+            / blog-info
+          / single-post
+        / card
+      / col-md-6 col-sm-12
+      .col-lg-4.col-md-6
+        .card.h-100
+          .single-post.post-style-1
+            .blog-image
+              %img{:alt => "Blog Image"}/
+            %a.avatar{:href => "#"}
+              %img{:alt => "Profile Image"}/
+            .blog-info
+              %h4.title
+                %a{:href => "#"}
+                  %b
+                    How Did Van Gogh's Turbulent Mind Depict One of the Most Complex
+                    Concepts in Physics?
+              %ul.post-footer
+                %li
+                  %a{:href => "#"}
+                    %i.ion-heart>
+                    57
+                %li
+                  %a{:href => "#"}
+                    %i.ion-chatbubble>
+                    6
+                %li
+                  %a{:href => "#"}
+                    %i.ion-eye>
+                    138
+            / blog-info
+          / single-post
+        / card
+      / col-md-6 col-sm-12
+      .col-lg-4.col-md-6
+        .card.h-100
+          .single-post.post-style-1
+            .blog-image
+              %img{:alt => "Blog Image"}/
+            %a.avatar{:href => "#"}
+              %img{:alt => "Profile Image"}/
+            .blog-info
+              %h4.title
+                %a{:href => "#"}
+                  %b
+                    How Did Van Gogh's Turbulent Mind Depict One of the Most Complex
+                    Concepts in Physics?
+              %ul.post-footer
+                %li
+                  %a{:href => "#"}
+                    %i.ion-heart>
+                    57
+                %li
+                  %a{:href => "#"}
+                    %i.ion-chatbubble>
+                    6
+                %li
+                  %a{:href => "#"}
+                    %i.ion-eye>
+                    138
+            / blog-info
+          / single-post
+        / card
+      / col-md-6 col-sm-12
+    / row
+  / container
+%section.comment-section.center-text
+  .container
+    %h4
+      %b POST COMMENT
+    .row
+      .col-lg-2.col-md-0
+      .col-lg-8.col-md-12
+        .comment-form
+          = simple_form_for [@article, @comment], remote: :true do |f|
+            .row
+              .col-sm-12
+                = f.text_field :description, class: 'form-control', placeholder: 'Enter Your Comment'
+              .col-sm-12
+                %button#form-submit.submit-btn{:type => "submit"}
+                  %b POST COMMENT
+        #div_comment_show
+          = render 'comments/show'
+%footer
+  .container
+    .row
+      .col-lg-4.col-md-6
+        .footer-section
+          %a.logo{:href => "#"}
+            = image_tag('blog.png', { style: 'width:100px;' })
+          %p.copyright blog @ 2017. All rights reserved.
+          %p.copyright
+            Developed by
+            = link_to 'Anoob K Bava', "http://anoobbava.github.io/about"
+          %ul.icons
+            %li
+              %a{:href => "#"}
+                %i.ion-social-facebook-outline
+            %li
+              %a{:href => "#"}
+                %i.ion-social-twitter-outline
+            %li
+              %a{:href => "#"}
+                %i.ion-social-instagram-outline
+            %li
+              %a{:href => "#"}
+                %i.ion-social-vimeo-outline
+            %li
+              %a{:href => "#"}
+                %i.ion-social-pinterest-outline
+        / footer-section
+      / col-lg-4 col-md-6
+      .col-lg-4.col-md-6
+        .footer-section
+          %h4.title
+            %b CATAGORIES
+          %ul
+            - @categories.each do |category|
+              %li
+                %a{:href => "#"}
+                  = category.name
+        / footer-section
+      / col-lg-4 col-md-6
+      .col-lg-4.col-md-6
+        .footer-section
+          %h4.title
+            %b SUBSCRIBE
+          .input-area
+            %form
+              %input.email-input{:placeholder => "Enter your email", :type => "text"}/
+              %button.submit-btn{:type => "submit"}
+                %i.icon.ion-ios-email-outline
+        / footer-section
+      / col-lg-4 col-md-6
+    / row
+  / container
+

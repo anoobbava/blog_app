@@ -1,29 +1,28 @@
-#test_data
-  - if @comments.present?
-    %b
+%h4
+  %b
+    - if @comments.present?
       = @comments.count
-      Comments
-    .comments_class
-      - @comments.each do |comment|
-        .comments-area
-          .comment
-            .post-info
-              .left-area
-                %a.avatar{:href => "#"}
-                  %img{:alt => "Profile Image", :src => "images/avatar-1-120x120.jpg"}/
-              .middle-area
-                / %a.name{:href => "#"}
-                %b
-                  = comment.user.user_name
-                  / %b Katy Liu
-                %h6.date
-                  on
-                  = comment.created_at.strftime('%b %d, %Y at %I:%M %p')
-              .right-area
-                %h5.reply-btn
-                  %a{:href => "#"}
-                    %b REPLY
-            / post-info
-            %p
-              = comment.description
-
+      COMMENTS
+.commnets-area.text-left
+  - @comments.each do |comment|
+    .comment
+      .post-info
+        .left-area
+          %a.avatar{:href => "#"}
+            = image_tag(@article.image_url(:thumb).to_s)
+        .middle-area
+          %b
+            = comment.user.user_name
+          %h6.date
+            on
+            = comment.created_at.strftime('%b %d, %Y at %I:%M %p')
+        .right-area
+          %h5.reply-btn
+            %a{:href => "#"}
+              %b
+                REPLY
+      %p
+        = comment.description
+%a.more-comment-btn{:href => "#"}
+  %b
+    VIEW MORE COMMENTS

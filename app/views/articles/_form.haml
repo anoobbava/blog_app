@@ -5,6 +5,7 @@
       = f.input :title, required: true
       = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select'}
       = f.input :content, required: true
+      = f.file_field :image
       - if params[:action] == 'edit'
         = f.fields_for :links, @article.links.build do |link_form|
           = link_form.hidden_field :id
