@@ -10,6 +10,7 @@ class User < ApplicationRecord
   attr_accessor :login
   validates :user_name, presence: :true, uniqueness: { case_sensitive: false }
   validates_format_of :user_name, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  mount_uploader :image, ImageUploader
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

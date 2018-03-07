@@ -1,0 +1,23 @@
+.container-fluid
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-login
+        .panel-heading
+          .row
+            .col-xs-12
+              %a#register-form-link{:href => "#"} Resend confirmation mail
+          %hr/
+        .panel-body
+          .row
+            .col-lg-12
+              #register-form
+                = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+                  .form-group
+                    .row
+                      .col-sm-12.col-sm-offset-3
+                    = f.input :email, required: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        %input#register-submit.form-control.btn.btn-register{:name => "register-submit", :tabindex => "4", :type => "submit", :value => "Send Mail"}/
+                = render "devise/shared/links"

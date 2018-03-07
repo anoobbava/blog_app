@@ -34,8 +34,8 @@ class ArticlesController < ApplicationController
   def edit; end
 
   def show
-    @links = @article.links
-    @comments = @article.comments
+    @categories = Category.all
+    @comments = @article.comments.order(id: :desc)
     @comment = Comment.new(article: @article)
   end
 
@@ -61,7 +61,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :category_id,
+    params.require(:article).permit(:title, :content, :category_id, :image,
                                     links_attributes:
                                     %i[description address id])
   end

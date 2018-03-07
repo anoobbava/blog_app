@@ -1,0 +1,32 @@
+.container-fluid
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-login
+        .panel-heading
+          .row
+            .col-xs-12
+              %a#login-form-link.active{:href => "#"} Login
+          %hr/
+        .panel-body
+          .row
+            .col-lg-12
+              #login-form
+                = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                  .form-group
+                    = f.text_field :login, autofocus: true, required: true, class: 'form-control', placeholder: "User name or E-mail"
+                  .form-group
+                    = f.password_field :password, autocomplete: "off",required: true, class: 'form-control' , placeholder: "Password"
+                  - if devise_mapping.rememberable?
+                    .form-group.text-center
+                      = f.check_box :remember_me
+                      %label{:for => "remember"} Remember Me
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        %input#login-submit.form-control.btn.btn-login{:name => "login-submit", :tabindex => "4", :type => "submit", :value => "Log In"}/
+                  .form-group
+                    .row
+                      .col-lg-12
+                        .text-center
+                          = link_to "Forgot your password?", new_password_path(resource_name)
+              = render "devise/shared/links"

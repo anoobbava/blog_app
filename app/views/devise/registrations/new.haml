@@ -1,13 +1,28 @@
-%h2 Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :first_name
-    = f.input :last_name
-    = f.input :user_name
-    = f.input :email, required: true, autofocus: true
-    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
+.container-fluid
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-login
+        .panel-heading
+          .row
+            .col-xs-12
+              %a#register-form-link{:href => "#"} Register
+          %hr/
+        .panel-body
+          .row
+            .col-lg-12
+              #register-form
+                = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+                  = f.error_notification
+                  .form-inputs
+                    = f.input :first_name
+                    = f.input :last_name
+                    = f.input :user_name, required: true
+                    = f.input :email, required: true
+                    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+                    = f.input :password_confirmation, required: true
+                    = f.file_field :image
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        %input#register-submit.form-control.btn.btn-register{:name => "register-submit", :tabindex => "4", :type => "submit", :value => "Register Now"}/
+                = render "devise/shared/links"

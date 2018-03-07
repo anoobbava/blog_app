@@ -7,4 +7,5 @@ class Article < ApplicationRecord
   has_many :links
   has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :links
+  mount_uploader :image, ImageUploader
 end

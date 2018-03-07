@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if comment.save
       ArticleMailer.comment_on_article(@article, comment).deliver_now
       flash.now[:success] = 'commented successfully'
-      @comments = @article.comments
+      @comments = @article.comments.order(id: :desc)
     else
       flash[:notice] = "Error on comment Creation >> #{comment.errors.full_messages.to_sentence}"
     end
