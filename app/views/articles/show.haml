@@ -15,7 +15,7 @@
             .post-info
               .left-area
                 %a.avatar{:href => "#"}
-                  = image_tag(@article.image_url(:thumb).to_s)
+                  = image_tag(@article.user.image_url(:thumb).to_s)
               .middle-area
                 %b
                   = @article.user.user_name
@@ -58,7 +58,7 @@
             .post-footer.post-info
               .left-area
                 %a.avatar{:href => "#"}
-                  = image_tag(@article.image_url(:thumb).to_s)
+                  = image_tag(@article.user.image_url(:thumb).to_s)
               .middle-area
                 %a.name{:href => "#"}
                   %b
