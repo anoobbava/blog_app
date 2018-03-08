@@ -4,12 +4,12 @@
       = @comments.count
       COMMENTS
 .commnets-area.text-left
-  - @comments.each do |comment|
+  - @comments.includes(:user).each do |comment|
     .comment
       .post-info
         .left-area
           %a.avatar{:href => "#"}
-            = image_tag(@article.image_url(:thumb).to_s)
+            = image_tag(comment.user.image_url.to_s)
         .middle-area
           %b
             = comment.user.user_name

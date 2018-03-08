@@ -35,7 +35,8 @@ class ArticlesController < ApplicationController
 
   def show
     @categories = Category.all
-    @comments = @article.comments.order(id: :desc)
+    @comments = @article.comments.includes(:user).order(id: :desc)
+    @user = @article.user
     @comment = Comment.new(article: @article)
   end
 
