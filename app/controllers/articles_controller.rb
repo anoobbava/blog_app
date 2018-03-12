@@ -9,9 +9,9 @@ class ArticlesController < ApplicationController
     @categories = Category.all
     if params[:category]
       category = Category.find_by(name: params[:category])
-      @articles = Article.where(category_id: category.id)
+      @articles = Article.includes(:user).where(category_id: category.id)
     else
-      @articles = Article.all.order('created_at DESC')
+      @articles = Article.includes(:user).all.order('created_at DESC')
     end
   end
 
@@ -35,16 +35,13 @@ class ArticlesController < ApplicationController
 
   def show
     @categories = Category.all
-    @comments = @article.comments.order(id: :desc)
+    @comments = @article.comments.includes(:user).order(id: :desc)
+    @user = @article.user
     @comment = Comment.new(article: @article)
   end
 
   def update
     if @article.update(article_params)
-      if @article.links.present?
-        @article.links.last.update_attributes(user_id: current_user.id)
-        ArticleMailer.update_article(@article).deliver_now
-      end
       redirect_to @article
       flash[:notice] = 'Article updated'
     else
@@ -61,9 +58,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :category_id, :image,
-                                    links_attributes:
-                                    %i[description address id])
+    params.require(:article).permit(:title, :content, :category_id, :image)
   end
 
   def fetch_article

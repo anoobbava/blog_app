@@ -15,10 +15,10 @@
             .post-info
               .left-area
                 %a.avatar{:href => "#"}
-                  = image_tag(@article.user.image_url(:thumb).to_s)
+                  = image_tag(@user.image_url.to_s)
               .middle-area
                 %b
-                  = @article.user.user_name
+                  = @user.user_name
                 %h6.date
                   on
                   = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
@@ -58,11 +58,11 @@
             .post-footer.post-info
               .left-area
                 %a.avatar{:href => "#"}
-                  = image_tag(@article.user.image_url(:thumb).to_s)
+                  = image_tag(@article.user.image_url.to_s)
               .middle-area
                 %a.name{:href => "#"}
                   %b
-                    = @article.user.user_name
+                    = @user.user_name
                 %h6.date
                   on
                   = @article.created_at.strftime('%b %d, %Y at %I:%M %p')

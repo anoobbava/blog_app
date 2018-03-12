@@ -11,7 +11,6 @@ RSpec.describe ArticlesController, type: :controller do
     @user.confirm
     @article = FactoryBot.create(:valid_article, user: @user, category: @category)
     @comment = FactoryBot.create(:valid_comment, article: @article, user: @user)
-    @link_params = FactoryBot.attributes_for(:valid_link,  article: @article, user: @user)
   end
 
   it 'render to index page' do
@@ -48,7 +47,7 @@ RSpec.describe ArticlesController, type: :controller do
 
   it 'update the article flash messages' do
     sign_in @user
-    put :update, params: { id: @article.id, article: @params, link_attributes: @link_params }
+    put :update, params: { id: @article.id, article: @params }
     expect(flash[:notice]).to be_present
   end
 

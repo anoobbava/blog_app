@@ -1,9 +1,30 @@
-.row
-  .col-md-10
-    -@articles.each do |article|
-      .panel.panel-success
-        .panel-heading
-          %h4
-            = link_to "#{article.title}", article_path(article)
-        .panel-body
-          = article.content
+%section.blog-area.section
+  .container
+    .row
+      - @articles.each do |article|
+        .col-lg-4.col-md-6
+          .card.h-100
+            .single-post.post-style-1
+              .blog-image
+                = image_tag(article.image_url)
+              %a.avatar{:href => "#"}
+                = image_tag(article.user.image_url)
+              .blog-info
+                %h4.title
+                  %b
+                    = link_to article.title, article
+                %ul.post-footer
+                  %li
+                    %a{:href => "#"}
+                      .glyphicon.glyphicon-heart
+                      57
+                  %li
+                    %a{:href => "#"}
+                      .glyphicon.glyphicon-comment
+                      = article.comments.count
+                  %li
+                    %a{:href => "#"}
+                      .glyphicon.glyphicon-eye-open
+                      138
+    %a.load-more-btn{:href => "#"}
+      %b LOAD MORE
