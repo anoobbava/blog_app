@@ -1,0 +1,29 @@
+.container-fluid
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-login
+        .panel-heading
+          .row
+            .col-xs-12
+              %a#register-form-link{:href => "#"} Edit #{resource_name.to_s.humanize}
+          %hr/
+        .panel-body
+          .row
+            .col-lg-12
+              #register-form
+                = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+                  = f.error_notification
+                  .form-inputs
+                    = f.input :first_name
+                    = f.input :last_name
+                    = f.input :user_name, required: true
+                    = f.input :email, required: true
+                    = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
+                    = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
+                    = f.input :password_confirmation, required: false
+                    = f.file_field :image
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        %input#register-submit.form-control.btn.btn-register{:name => "register-submit", :tabindex => "4", :type => "submit", :value => "Update"}/
+                = render "devise/shared/links"
