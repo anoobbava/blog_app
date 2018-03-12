@@ -9,9 +9,9 @@ class ArticlesController < ApplicationController
     @categories = Category.all
     if params[:category]
       category = Category.find_by(name: params[:category])
-      @articles = Article.where(category_id: category.id)
+      @articles = Article.includes(:user).where(category_id: category.id)
     else
-      @articles = Article.all.order('created_at DESC')
+      @articles = Article.includes(:user).all.order('created_at DESC')
     end
   end
 
