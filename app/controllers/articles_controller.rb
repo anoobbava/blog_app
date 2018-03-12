@@ -42,10 +42,6 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      if @article.links.present?
-        @article.links.last.update_attributes(user_id: current_user.id)
-        ArticleMailer.update_article(@article).deliver_now
-      end
       redirect_to @article
       flash[:notice] = 'Article updated'
     else
@@ -62,9 +58,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :category_id, :image,
-                                    links_attributes:
-                                    %i[description address id])
+    params.require(:article).permit(:title, :content, :category_id, :image)
   end
 
   def fetch_article

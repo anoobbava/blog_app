@@ -11,18 +11,11 @@ RSpec.describe ArticleMailer, type: :mailer do
     user2 = FactoryBot.create(:valid_user)
     category = FactoryBot.create(:valid_category)
     @article = FactoryBot.create(:valid_article, user: user1, category: category)
-    FactoryBot.create(:valid_link, article: @article, user: user1)
     @comment = FactoryBot.create(:valid_comment, article: @article, user: user2)
   end
 
   after(:each) do
     ActionMailer::Base.deliveries.clear
-  end
-
-  it 'check update mail send' do
-    ArticleMailer.update_article(@article).deliver
-    expect(ActionMailer::Base.deliveries.count).to eq(1)
-    expect(ActionMailer::Base.deliveries.first.subject).to eq('Citation Added')
   end
 
   it 'check comment success' do
