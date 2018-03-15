@@ -1,0 +1,13 @@
+%li
+  = link_to article_path(notification.notifiable), class: "dropdown-item #{"unread" if !notification.read_at?}" do
+    .like-button
+      - img_src = notification.actor.present? ? notification.actor.image_url : '/assets/default.png'
+      %img.user-pic.img-circle{:alt => "", :src => img_src, width: 20}/
+    %span.subject
+      %span.from
+        = notification.actor.user_name
+      %span.time
+        = notification.created_at.strftime("%d/%m %H:%M")
+    %span.message
+      #{notification.action.underscore.humanize.downcase}
+      in #{notification.notifiable_type.underscore.humanize.downcase}

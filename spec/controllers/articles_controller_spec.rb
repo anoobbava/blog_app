@@ -73,7 +73,7 @@ RSpec.describe ArticlesController, type: :controller do
   it 'create an article success' do
     sign_in @user
     post :create, params: { article: @params }
-    expect(response.status).to eq(302)
+    expect(response.status).to eq(200)
   end
 
   it 'create an article failure' do

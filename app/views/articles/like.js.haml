@@ -1,0 +1,3 @@
+:plain
+  $('#wiki-alerts').html("#{escape_javascript (render partial: 'shared/alerts')}");
+  $('#like-count').html("#{@article.get_upvotes.size}");

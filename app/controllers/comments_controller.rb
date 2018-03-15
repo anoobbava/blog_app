@@ -7,6 +7,10 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     comment = Comment.new(comment_params)
     if comment.save
+      unless current_user == @article.user
+        Notification.create(recipient: @article.user, actor: current_user, action: 'commented',
+                            notifiable: @article)
+      end
       ArticleMailer.comment_on_article(@article, comment).deliver_now
       flash.now[:success] = 'commented successfully'
       @comments = @article.comments.order(id: :desc)

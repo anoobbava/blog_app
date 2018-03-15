@@ -7,12 +7,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.4.1'
+gem 'acts_as_votable', '~> 0.11.1'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'carrierwave', '~> 1.2', '>= 1.2.2'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.3'
 gem 'gritter', '~> 1.2'
 gem 'haml', '~> 5.0', '>= 5.0.4'
+gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 4.8'
 gem 'overcommit', '~> 0.41.0'

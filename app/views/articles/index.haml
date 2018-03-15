@@ -15,15 +15,15 @@
                     = link_to article.title, article
                 %ul.post-footer
                   %li
-                    %a{:href => "#"}
+                    %a
                       .glyphicon.glyphicon-heart
-                      57
+                      = article.get_upvotes.size
                   %li
-                    %a{:href => "#"}
+                    %a
                       .glyphicon.glyphicon-comment
                       = article.comments.count
                   %li
-                    %a{:href => "#"}
+                    %a
                       .glyphicon.glyphicon-eye-open
                       = article.view_count
     %a.load-more-btn{:href => "#"}

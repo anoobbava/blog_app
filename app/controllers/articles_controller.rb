@@ -2,7 +2,7 @@
 
 class ArticlesController < ApplicationController
   before_action :article_params, only: [:create]
-  before_action :fetch_article, only: %i[show destroy edit update]
+  before_action :fetch_article, only: %i[show destroy edit update like]
   before_action :authenticate_user!, only: %i[create new edit destroy update]
 
   def index
@@ -37,6 +37,7 @@ class ArticlesController < ApplicationController
     @categories = Category.all
     @comments = @article.comments.includes(:user).order(id: :desc)
     @user = @article.user
+    @article.update_attributes(view_count: @article.view_count + 1)
     @comment = Comment.new(article: @article)
   end
 
@@ -53,6 +54,12 @@ class ArticlesController < ApplicationController
     @article.destroy
     flash[:notice] = 'Article Deleted'
     redirect_to root_path
+  end
+
+  def like
+    @article.upvote_from current_user
+    flash.now[:success] = 'like success'
+    render layout: false
   end
 
   private

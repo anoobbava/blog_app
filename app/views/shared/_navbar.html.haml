@@ -14,6 +14,8 @@
         %li= link_to 'New Article', new_article_path
         %li= link_to 'Categories'
       %ul.nav.navbar-nav.pull-right
+        - if user_signed_in?
+          = render partial: 'layouts/notifications'
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
             / The Profile picture inserted via div class below, with shaping provided by Bootstrap

@@ -22,6 +22,10 @@
                 %h6.date
                   on
                   = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
+              .right-area
+                = link_to like_article_path(@article), method: :put , remote: :true, class: 'like-post' do
+                  .like-button
+                    = image_tag('like.png',alt: 'like me')
             / post-info
             %p.para
               = @article.content.split('.')[0..2].join('.')
@@ -37,15 +41,18 @@
                     %a
                       = category.name
             .post-icons-area
-              %ul.post-icons
+              %ul.post-footer
                 %li
                   .glyphicon.glyphicon-heart
-                  57
+                  #like-count
+                    = @article.get_upvotes.size
                 %li
                   .glyphicon.glyphicon-comment
-                  = @article.comments.count
+                  #comment-count
+                    = @article.comments.count
                 %li
                   .glyphicon.glyphicon-eye-open
+                  #view-count
                   = @article.view_count
               %ul.icons
                 %li SHARE :
@@ -66,6 +73,10 @@
                 %h6.date
                   on
                   = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
+              .right-area
+                = link_to like_article_path(@article), method: :put , remote: :true, class: 'like-post' do
+                  .like-button
+                    = image_tag('like.png',alt: 'like me')
             / post-info
           / post-bottom-area
         / main-post

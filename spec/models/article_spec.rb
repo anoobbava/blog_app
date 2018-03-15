@@ -12,6 +12,6 @@ RSpec.describe Article, type: :model do
   end
 
   it 'check category' do
-    expect(@valid_article.category_id).to eq(1)
+    expect(@valid_article.category).to be_valid
   end
 end
