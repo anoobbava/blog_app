@@ -19,6 +19,9 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
+      params[:article_attachments]['image'].each do |a|
+        @article.article_attachments.create!(image: a, article_id: @article.id)
+      end
       flash[:notice] = 'Article Created'
       redirect_to @article
     else
@@ -29,11 +32,13 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @categories = Category.all
+    @article_attachment = @article.article_attachments.build
   end
 
   def edit; end
 
   def show
+    @article_attachments = @article.article_attachments.all
     @categories = Category.all
     @comments = @article.comments.includes(:user).order(id: :desc)
     @user = @article.user
@@ -65,7 +70,8 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :category_id, :image)
+    params.require(:article).permit(:title, :content, :category_id,
+                                    article_attachments_attributes: [:id, :article_id, :image])
   end
 
   def fetch_article

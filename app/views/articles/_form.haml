@@ -5,5 +5,7 @@
       = f.input :title, required: true
       = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select'}
       = f.input :content, required: true
-      = f.file_field :image
+      = f.fields_for :article_attachments do |p|
+        = p.label :image
+        = p.file_field :image, :multiple => true, name: "article_attachments[image][]"
       = f.button :submit

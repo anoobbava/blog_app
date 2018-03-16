@@ -30,8 +30,9 @@
             %p.para
               = @article.content.split('.')[0..2].join('.')
           / post-top-area
-          .post-image
-            = image_tag(@article.image_url.to_s)
+          - @article_attachments.each do |image|
+            .post-image
+              = image_tag(image.image_url.to_s)
           .post-bottom-area
             %p.para
               = @article.content.split('.')[3..@article.content.length].join('.')
