@@ -12,4 +12,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: att
     devise_parameter_sanitizer.permit :account_update, keys: att
   end
+
+  def respond_modal_with(*args, &blk)
+    options = args.extract_options!
+    options[:responder] = ModalResponder
+    respond_with *args, options, &blk
+  end
 end
