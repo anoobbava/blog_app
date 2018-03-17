@@ -39,6 +39,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article_attachments = @article.article_attachments.all
+    @first_image = @article_attachments.first
     @categories = Category.all
     @comments = @article.comments.includes(:user).order(id: :desc)
     @user = @article.user

@@ -30,9 +30,25 @@
             %p.para
               = @article.content.split('.')[0..2].join('.')
           / post-top-area
-          - @article_attachments.each do |image|
+          #myCarousel.carousel.slide{"data-ride" => "carousel",  "data-interval" => '2000' }
+            / Indicators
+            %ol.carousel-indicators
+              - @article_attachments.each_with_index do|image, index|
+                %li{"data-slide-to" => "#{index}", "data-target" => "#myCarousel", class: "#{index}" == 0 ? 'active' : ''}
+            / Wrapper for slides
             .post-image
-              = image_tag(image.image_url.to_s)
+              .carousel-inner
+                - @article_attachments.each_with_index do|image, index|
+                  %div{:class => "item #{index == 0 ? 'active' : ''}"}
+                    = image_tag(image.image_url.to_s)
+              / Left and right controls
+            %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel"}
+              %span.glyphicon.glyphicon-chevron-left
+              %span.sr-only Previous
+            %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel"}
+              %span.glyphicon.glyphicon-chevron-right
+              %span.sr-only Next
+
           .post-bottom-area
             %p.para
               = @article.content.split('.')[3..@article.content.length].join('.')
