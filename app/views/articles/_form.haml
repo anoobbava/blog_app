@@ -1,11 +1,12 @@
-.row
-  .col-md-10
-    = simple_form_for @article do |f|
-      = f.error_notification
-      = f.input :title, required: true
-      = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select'}
-      = f.input :content, required: true
-      = f.fields_for :article_attachments do |p|
-        = p.label :image
-        = p.file_field :image, :multiple => true, name: "article_attachments[image][]"
-      = f.button :submit
+.container-fluid
+  .row
+    .col-md-8
+      = simple_form_for @article do |f|
+        = f.error_notification
+        = f.input :title, required: true
+        = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select'}
+        = f.input :content, required: true
+        = f.fields_for :article_attachments do |p|
+          = p.label :image, label: 'Select multiple images'
+          = p.file_field :image, :multiple => true, name: "article_attachments[image][]"
+        = f.button :submit

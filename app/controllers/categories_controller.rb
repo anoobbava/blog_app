@@ -19,15 +19,27 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    if @category.update(permit_params)
+      redirect_to categories_path
+      flash[:notice] = 'Article Updated'
+    end
   end
 
   def destroy
+    if @category.destroy
+      redirect_to categories_path
+      flash[:notice] = 'Category Deleted'
+    end
   end
 
   def edit
   end
 
   def show
+  end
+
+  def index
+    @categories = Category.all.order('created_at DESC')
   end
 
 

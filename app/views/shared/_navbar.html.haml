@@ -12,7 +12,8 @@
       %ul.nav.navbar-nav.navbar
         %li= link_to 'Articles', articles_path
         %li= link_to 'New Article', new_article_path
-        %li= link_to 'Categories', new_category_path, data:{ modal: true }
+        %li= link_to 'New Category', new_category_path, data:{ modal: true }
+        %li= link_to 'Category Management', categories_path
       %ul.nav.navbar-nav.pull-right
         - if user_signed_in?
           = render partial: 'layouts/notifications'
