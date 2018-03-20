@@ -4,7 +4,8 @@
       = simple_form_for @article do |f|
         = f.error_notification
         = f.input :title, required: true
-        = f.select(:category_id, options_for_select(@categories),{}, { :multiple => true} )
+        = f.fields_for :article_categories do |p|
+          = p.select(:category_id, options_for_select(@categories),{}, { :multiple => true})
         = f.input :content, required: true
         = f.fields_for :article_attachments do |p|
           = p.label :image, label: 'Select multiple images'

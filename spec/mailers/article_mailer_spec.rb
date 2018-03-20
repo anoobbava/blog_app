@@ -10,7 +10,7 @@ RSpec.describe ArticleMailer, type: :mailer do
     user1 = FactoryBot.create(:valid_user)
     user2 = FactoryBot.create(:valid_user)
     category = FactoryBot.create(:valid_category)
-    @article = FactoryBot.create(:valid_article, user: user1, category: category)
+    @article = FactoryBot.create(:valid_article, user: user1)
     @comment = FactoryBot.create(:valid_comment, article: @article, user: user2)
   end
 

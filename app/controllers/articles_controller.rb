@@ -3,24 +3,18 @@
 class ArticlesController < ApplicationController
   before_action :article_params, only: [:create]
   before_action :fetch_article, only: %i[show destroy edit update like]
-  before_action :authenticate_user!, only: %i[create new edit destroy update]
+  before_action :authenticate_user!, only: %i[create new edit destroy update show]
   before_action :set_categories, only: [:new]
 
   def index
-    @categories = Category.all
-    if params[:category]
-      category = Category.find_by(name: params[:category])
-      @articles = Article.includes(:user).where(category_id: category.id)
-    else
-      @articles = Article.includes(:user).all.order('created_at DESC')
-    end
+    @articles = Article.includes(:user).all.order('created_at DESC')
   end
 
   def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
-      params[:article]['category_id'].reject{ |cat| cat.empty? }.each do |cat_id|
+      params[:article]['article_categories']['category_id'].reject{ |cat| cat.empty? }.each do |cat_id|
         @article.article_categories.create(category_id: cat_id, article_id: @article.id)
       end
       params[:article_attachments]['image'].each do |a|
@@ -76,7 +70,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :category_id,
+    params.require(:article).permit(:title, :content, :category_id, :user_id,
                                     article_attachments_attributes: [:id, :article_id, :image])
   end
 

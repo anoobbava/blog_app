@@ -10,8 +10,4 @@ RSpec.describe Article, type: :model do
   it 'valid article' do
     expect(@valid_article).to be_valid
   end
-
-  it 'check category' do
-    expect(@valid_article.category).to be_valid
-  end
 end
