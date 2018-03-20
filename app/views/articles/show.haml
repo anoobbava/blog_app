@@ -7,7 +7,7 @@
         .main-post
           .post-top-area
             %h5.pre-title
-              = @article.category.name
+              =# @article.category.name
             %h3.title
               %a{:href => "#"}
                 %b
@@ -53,10 +53,10 @@
             %p.para
               = @article.content.split('.')[3..@article.content.length].join('.')
               %ul.tags
-                - @categories.each do |category|
+                - @article_categories.each do |article_category|
                   %li
                     %a
-                      = category.name
+                      = article_category.category.name
             .post-icons-area
               %ul.post-footer
                 %li

@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316071923) do
+ActiveRecord::Schema.define(version: 20180320060748) do
 
   create_table "article_attachments", force: :cascade do |t|
     t.integer "article_id"
     t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "article_categories", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,7 +31,6 @@ ActiveRecord::Schema.define(version: 20180316071923) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id"
     t.integer "user_id"
     t.integer "view_count", default: 0
     t.index ["user_id"], name: "index_articles_on_user_id"

@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   before_action :article_params, only: [:create]
   before_action :fetch_article, only: %i[show destroy edit update like]
   before_action :authenticate_user!, only: %i[create new edit destroy update]
+  before_action :set_categories, only: [:new]
 
   def index
     @categories = Category.all
@@ -19,6 +20,9 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
+      params[:article]['category_id'].reject{ |cat| cat.empty? }.each do |cat_id|
+        @article.article_categories.create(category_id: cat_id, article_id: @article.id)
+      end
       params[:article_attachments]['image'].each do |a|
         @article.article_attachments.create!(image: a, article_id: @article.id)
       end
@@ -31,8 +35,8 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @categories = Category.all
     @article_attachment = @article.article_attachments.build
+    @article_categories = @article.article_categories.build
   end
 
   def edit; end
@@ -45,6 +49,7 @@ class ArticlesController < ApplicationController
     @user = @article.user
     @article.update_attributes(view_count: @article.view_count + 1)
     @comment = Comment.new(article: @article)
+    @article_categories = @article.article_categories.includes(:category)
   end
 
   def update
@@ -77,5 +82,9 @@ class ArticlesController < ApplicationController
 
   def fetch_article
     @article = Article.find_by(id: params[:id])
+  end
+
+  def set_categories
+    @categories = Category.pluck(:name, :id)
   end
 end
