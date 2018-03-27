@@ -109,7 +109,7 @@
 	4. SLIDER
 	--------------------------------- */
 
-	.slider{ height: 400px; width: 100%; background-image: image-url(category-1.jpg); background-size: cover; }
+	.slider{ height: 400px; width: 100%; background-image: image-url("category-1.jpg"); background-size: cover; }
 
 
 	/* ---------------------------------
