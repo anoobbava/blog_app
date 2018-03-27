@@ -23,6 +23,9 @@
                   on
                   = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
               .right-area
+                = link_to edit_article_path(@article) do
+                  .like-button
+                    = image_tag('edit_article.png', alt: 'edit article')
                 = link_to like_article_path(@article), method: :put , remote: :true, class: 'like-post' do
                   .like-button
                     = image_tag('like.png',alt: 'like me')
@@ -72,13 +75,8 @@
                   #view-count
                   = @article.view_count
               %ul.icons
-                %li SHARE :
                 %li
-                  %a{:href => "#"}
-                    facebook
-                %li
-                  %a{:href => "#"}
-                    twitter
+                  = social_share_button_tag(@article.title)
             .post-footer.post-info
               .left-area
                 %a.avatar{:href => "#"}
@@ -91,6 +89,9 @@
                   on
                   = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
               .right-area
+                = link_to edit_article_path(@article) do
+                  .like-button
+                    = image_tag('edit_article.png', alt: 'edit article')
                 = link_to like_article_path(@article), method: :put , remote: :true, class: 'like-post' do
                   .like-button
                     = image_tag('like.png',alt: 'like me')

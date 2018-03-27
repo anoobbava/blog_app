@@ -4,20 +4,28 @@
 {<img src="https://travis-ci.org/anoobbava/wiki_clone_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/anoobbava/wiki_clone_app]
 
 
-# README
+== README
 
-This is clone application of wikipaedia.
+This is a blog Application we we can upload the articles
 
 Main Aim of this Application is to
-* create a post
-* able to view by all users
-* All registered users can edit the whole post
-* Citation is mandatory for editing the post
+* create an Article
+* All can view the titles, need to login to read the content.
 * implement gritter flash alerts for alerts
-### Additional work
+==== Additional work
 * Able to upload the images
 * comment on a post
-* star the posts
-* only the registerd user can delete the post
-* like and dislike the posts
-* when the post is deleted, the citation related to the post and also the comment related to post will be destroyed
+* like the posts
+* view count for a post
+* when a comment is made, then the system send a notification to the author of article about this.
+* Added custom error pages rather than the default rails pages
+* able to upload the multiple images
+* An article can belongs to multiple articles also.
+* Carousal implemented in show page to view the articles
+* Added in-app navbar notifications
+* User can create new categories if the corresponding category is not there.
+
+==== To run in Dev
+
+* Clone this page
+run <b>bundle exec rails db:seed</b>

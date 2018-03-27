@@ -33,7 +33,7 @@ require 'faker'
 # Categories
 # ==================================
   5.times do
-    Category.find_or_create_by(name: Faker::Lorem.word, description: Faker::Lorem.characters(10))
+    Category.find_or_create_by(name: Faker::Lorem.characters(5), description: Faker::Lorem.characters(10))
   end
 
 # articles

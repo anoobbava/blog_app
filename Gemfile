@@ -17,14 +17,17 @@ gem 'haml', '~> 5.0', '>= 5.0.4'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 4.8'
-gem 'overcommit', '~> 0.41.0'
+gem 'overcommit'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.2'
 gem 'sass-rails', '~> 5.0'
+gem "select2-rails"
 gem 'sendgrid-ruby', '~> 5.2'
+gem 'social-share-button', '~> 1.1'
 gem 'simple_form', '~> 3.5'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+
 group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'rspec-rails'

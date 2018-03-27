@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :article_params, only: [:create]
   before_action :fetch_article, only: %i[show destroy edit update like]
   before_action :authenticate_user!, only: %i[create new edit destroy update show]
-  before_action :set_categories, only: [:new]
+  before_action :set_categories, only: [:new, :edit, :create]
 
   def index
     @articles = Article.includes(:user).all.order('created_at DESC')
@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :category_id, :user_id,
+    params.require(:article).permit(:title, :content, :user_id, :article_categories,
                                     article_attachments_attributes: [:id, :article_id, :image])
   end
 
