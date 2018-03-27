@@ -1,9 +1,30 @@
-.row
-  .col-md-10
-    = simple_form_for @article do |f|
-      = f.error_notification
-      = f.input :title, required: true
-      = f.collection_select :category_id, Category.all, :id, :name, {class: 'connect_user_select'}
-      = f.input :content, required: true
-      = f.file_field :image
-      = f.button :submit
+.col-md-12
+  .well.well-sm
+    %fieldset
+      = simple_form_for @article do |f|
+        = f.error_notification
+        .form-group
+          .row
+            .col-md-10
+              = f.text_field :title, required: true, class:'form-control', :placeholder => "Enter the Title"
+              / %input#fname.form-control{:name => "title", :placeholder => "Enter the Title", :type => "text"}/
+        .form-group
+          .row
+            .col-md-10
+              = f.fields_for :article_categories do |p|
+                = p.select(:category_id, options_for_select(@categories),{}, { :multiple => true})
+        .form-group
+          .row
+            .col-md-10
+              = f.text_area :content, required: true, class: 'form-control', rows: '7', :placeholder => "Add the contents"
+              / %textarea#message.form-control{:name => "content", :placeholder => "Add the contents", :rows => "7"}
+        .form-group
+          .row
+            .col-md-10
+              = f.fields_for :article_attachments do |p|
+                = p.label :image, label: 'Select multiple images'
+                = p.file_field :image, :multiple => true, name: "article_attachments[image][]"
+        .form-group
+          =# f.button :submit
+          .col-md-12.text-center
+            %button.btn.btn-primary.btn-lg{:type => "submit"} Submit

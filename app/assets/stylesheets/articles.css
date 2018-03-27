@@ -53,3 +53,15 @@
 .more-comment-btn{ display: block; margin-bottom: 30px; padding: 10px; text-align: center;
   box-shadow: 0px 0px 5px rgba(0,0,0,.1); border: 1px solid #fff; background: #fff; color: #555; }
 .more-comment-btn:hover{ border-color: #ccc; }
+
+
+.like-button{
+  width: 50px;
+  padding: 10px;
+}
+
+.select2-search.select2-search--inline{
+  width: 150px;
+  padding-left: 5px;
+  padding-right: 5px;
+}

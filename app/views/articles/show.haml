@@ -7,7 +7,7 @@
         .main-post
           .post-top-area
             %h5.pre-title
-              = @article.category.name
+              =# @article.category.name
             %h3.title
               %a{:href => "#"}
                 %b
@@ -22,39 +22,61 @@
                 %h6.date
                   on
                   = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
+              .right-area
+                = link_to edit_article_path(@article) do
+                  .like-button
+                    = image_tag('edit_article.png', alt: 'edit article')
+                = link_to like_article_path(@article), method: :put , remote: :true, class: 'like-post' do
+                  .like-button
+                    = image_tag('like.png',alt: 'like me')
             / post-info
             %p.para
               = @article.content.split('.')[0..2].join('.')
           / post-top-area
-          .post-image
-            = image_tag(@article.image_url.to_s)
+          #myCarousel.carousel.slide{"data-ride" => "carousel",  "data-interval" => '2000' }
+            / Indicators
+            %ol.carousel-indicators
+              - @article_attachments.each_with_index do|image, index|
+                %li{"data-slide-to" => "#{index}", "data-target" => "#myCarousel", class: "#{index}" == 0 ? 'active' : ''}
+            / Wrapper for slides
+            .post-image
+              .carousel-inner
+                - @article_attachments.each_with_index do|image, index|
+                  %div{:class => "item #{index == 0 ? 'active' : ''}"}
+                    = image_tag(image.image_url.to_s)
+              / Left and right controls
+            %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel"}
+              %span.glyphicon.glyphicon-chevron-left
+              %span.sr-only Previous
+            %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel"}
+              %span.glyphicon.glyphicon-chevron-right
+              %span.sr-only Next
+
           .post-bottom-area
             %p.para
               = @article.content.split('.')[3..@article.content.length].join('.')
               %ul.tags
-                - @categories.each do |category|
+                - @article_categories.each do |article_category|
                   %li
                     %a
-                      = category.name
+                      = article_category.category.name
             .post-icons-area
-              %ul.post-icons
+              %ul.post-footer
                 %li
                   .glyphicon.glyphicon-heart
-                  57
+                  #like-count
+                    = @article.get_upvotes.size
                 %li
                   .glyphicon.glyphicon-comment
-                  = @article.comments.count
+                  #comment-count
+                    = @article.comments.count
                 %li
                   .glyphicon.glyphicon-eye-open
-                  138
+                  #view-count
+                  = @article.view_count
               %ul.icons
-                %li SHARE :
                 %li
-                  %a{:href => "#"}
-                    facebook
-                %li
-                  %a{:href => "#"}
-                    twitter
+                  = social_share_button_tag(@article.title)
             .post-footer.post-info
               .left-area
                 %a.avatar{:href => "#"}
@@ -66,6 +88,13 @@
                 %h6.date
                   on
                   = @article.created_at.strftime('%b %d, %Y at %I:%M %p')
+              .right-area
+                = link_to edit_article_path(@article) do
+                  .like-button
+                    = image_tag('edit_article.png', alt: 'edit article')
+                = link_to like_article_path(@article), method: :put , remote: :true, class: 'like-post' do
+                  .like-button
+                    = image_tag('like.png',alt: 'like me')
             / post-info
           / post-bottom-area
         / main-post

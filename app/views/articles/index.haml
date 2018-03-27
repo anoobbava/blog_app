@@ -6,7 +6,7 @@
           .card.h-100
             .single-post.post-style-1
               .blog-image
-                = image_tag(article.image_url)
+                = image_tag(article.article_attachments.first.image_url.to_s)
               %a.avatar{:href => "#"}
                 = image_tag(article.user.image_url)
               .blog-info
@@ -15,16 +15,16 @@
                     = link_to article.title, article
                 %ul.post-footer
                   %li
-                    %a{:href => "#"}
+                    %a
                       .glyphicon.glyphicon-heart
-                      57
+                      = article.get_upvotes.size
                   %li
-                    %a{:href => "#"}
+                    %a
                       .glyphicon.glyphicon-comment
                       = article.comments.count
                   %li
-                    %a{:href => "#"}
+                    %a
                       .glyphicon.glyphicon-eye-open
-                      138
+                      = article.view_count
     %a.load-more-btn{:href => "#"}
       %b LOAD MORE
