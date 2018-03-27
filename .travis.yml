@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - 2.4.1
+env:
+  - DB=sqlite
+before_script:
+  - mysql -e 'create database test;'
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  -  bundle exec rspec && CODECLIMATE_REPO_TOKEN=0c9a7b58346ffed2411530ebdda9dced737d44876680a7125f9ebc52fee1e5d1 bundle exec codeclimate-test-reporter

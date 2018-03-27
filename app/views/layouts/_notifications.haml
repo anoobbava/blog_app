@@ -1,0 +1,11 @@
+%li#header_notification_bar.dropdown.dropdown-extended.dropdown-notification{"data-behavior" => "notifications", "data-notifications" => (render template: "notifications/index", formats: [:json])}
+  %a#dropdownMenu1.dropdown-toggle.nav-link{"aria-expanded" => "false", "aria-haspopup" => "true", "data-behavior" => "notifications-link", "data-toggle" => "dropdown", :type => "button"}
+    %span.glyphicon.glyphicon-bell
+    %span.badge.badge-default{"data-behavior" => "unread-count"}
+  %ul.dropdown-menu
+    %li.external
+      %h3
+        %span.bold{"data-behavior" => "unread-count"}
+        %span.bold pending notifications
+    %li
+      %ul.dropdown-menu-list.scroller{"data-handle-color" => "#637283", :style => "height: 250px;", "aria-labelledby" => "dropdownMenu1", "data-behavior" => "notification-items"}

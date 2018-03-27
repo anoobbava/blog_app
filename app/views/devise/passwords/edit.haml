@@ -1,0 +1,30 @@
+.container-fluid
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-login
+        .panel-heading
+          .row
+            .col-xs-12
+              %a#register-form-link{:href => "#"} Change Password
+          %hr/
+        .panel-body
+          .row
+            .col-lg-12
+              #register-form
+                = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+                  = f.error_notification
+                  = f.input :reset_password_token, as: :hidden
+                  = f.full_error :reset_password_token
+                  .form-group
+                    .row
+                      .col-sm-12
+                        = f.input :password, required: true, label: "New password", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+                  .form-group
+                    .row
+                      .col-sm-12
+                        = f.input :password_confirmation, required: true, label: "Confirm your new password"
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        %input#register-submit.form-control.btn.btn-register{:name => "register-submit", :tabindex => "4", :type => "submit", :value => "Change Password"}/
+                = render "devise/shared/links"

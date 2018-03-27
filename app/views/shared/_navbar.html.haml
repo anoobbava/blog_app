@@ -9,13 +9,36 @@
         %span.icon-bar
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-      %ul.nav.navbar-nav.navbar-right
-        %li= link_to 'Articles', articles_path, class: 'btn btn-default'
-        %li
-        %li= link_to 'New Article', new_article_path, class: 'btn btn-default'
+      %ul.nav.navbar-nav.navbar
+        %li= link_to 'Articles', articles_path
         - if user_signed_in?
-          %li= link_to 'Logout', destroy_user_session_path, method: :delete
-        - else
-          %li= link_to 'Login', new_user_session_path, class: 'btn btn-default'
-          %li= link_to 'SignUp', new_user_registration_path, class: 'btn btn-default'
+          %li= link_to 'New Article', new_article_path
+          %li= link_to 'New Category', new_category_path, data:{ modal: true }
+          %li= link_to 'Category Management', categories_path
+      %ul.nav.navbar-nav.pull-right
+        - if user_signed_in?
+          = render partial: 'layouts/notifications'
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
+            / The Profile picture inserted via div class below, with shaping provided by Bootstrap
+            .img-rounded.profile-img
+              - if user_signed_in?
+                = image_tag(current_user.image_url.to_s)
+              - else
+                = image_tag('default.png')
+            - if user_signed_in?
+              = current_user.user_name
+            - else
+              User Name
+            %span.caret
+          %ul.dropdown-menu
+            - if user_signed_in?
+              %li
+                = link_to 'Profile', edit_user_registration_path(current_user)
+              %li
+                = link_to 'Logout', destroy_user_session_path, method: :delete
+            - else
+              %li
+                = link_to 'Login', new_user_session_path
+              %li
+                = link_to 'Signup', new_user_registration_path

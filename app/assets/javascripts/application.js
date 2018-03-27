@@ -15,3 +15,5 @@
 //= require_tree .
 //= require bootstrap.min
 //= require gritter
+//= require select2
+//= require social-share-button

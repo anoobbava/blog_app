@@ -1,0 +1,10 @@
+.container-fluid
+  .row
+    .col-md-8
+      = simple_form_for @category do |f|
+        = f.input :name, value: @category.name
+        = f.input :description, value: @category.description
+        = f.submit
+
+    .col-md-4
+

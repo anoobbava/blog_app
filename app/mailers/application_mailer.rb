@@ -1,4 +1,6 @@
+# encoding: utf-8
+
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'no-reply@wiki-clone-app.com'
   layout 'mailer'
 end

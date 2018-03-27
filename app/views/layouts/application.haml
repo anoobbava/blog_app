@@ -6,19 +6,16 @@
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+
   %body
-    .container-fluid
+    .container-fluid-position-relative-no-side-padding
       .row
         .col-md-12
           = render 'shared/navbar'
-    .container
+          #modal-holder
+    .container-fluid-position-relative-no-side-padding
       .row
-        .col-md-10
+        .col-md-12
           = render 'shared/alerts'
           = yield
-        .col-md-2
-          %h3 Categories
-          %ul
-            -Category.all.each do |category|
-              %li
-                = link_to "#{category.name}", articles_path(category: category.name)
