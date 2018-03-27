@@ -8,7 +8,8 @@ Rails.application.configure do
   config.read_encrypted_secrets = true
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.assets.js_compressor = :uglifier
-  config.assets.compile = false
+  config.assets.compile = true
+  config.assets.digest = true
   config.log_level = :debug
   config.log_tags = [:request_id]
   config.action_mailer.perform_caching = false
@@ -21,7 +22,7 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { host: 'wiki-clone-app.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'blo.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'smtp.sendgrid.net', port: 587,
                                          domain: 'yourdomain.com',
