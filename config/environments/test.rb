@@ -15,5 +15,5 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
   # mailer for test
   config.action_mailer.delivery_method = :test
-  config.action_mailer.default_url_options = { host: 'wiki-clone-app.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'blog-app-bava.herokuapp.com' }
 end

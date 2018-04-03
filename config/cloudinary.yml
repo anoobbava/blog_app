@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dbzqixnor
+  api_key: '868299345688555'
+  api_secret: CGT-hKJxsz9hz87C2yReJRiT8FU
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dbzqixnor
+  api_key: '868299345688555'
+  api_secret: CGT-hKJxsz9hz87C2yReJRiT8FU
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dbzqixnor
+  api_key: '868299345688555'
+  api_secret: CGT-hKJxsz9hz87C2yReJRiT8FU
+  enhance_image_tag: true
+  static_image_support: false
