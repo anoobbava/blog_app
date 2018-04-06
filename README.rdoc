@@ -1,7 +1,7 @@
-{<img src="https://codeclimate.com/github/anoobbava/wiki_clone_app/badges/gpa.svg" />}[https://codeclimate.com/github/anoobbava/wiki_clone_app]
-{<img src="https://codeclimate.com/github/anoobbava/wiki_clone_app/badges/coverage.svg" />}[https://codeclimate.com/github/anoobbava/wiki_clone_app/coverage]
-{<img src="https://codeclimate.com/github/anoobbava/wiki_clone_app/badges/issue_count.svg" />}[https://codeclimate.com/github/anoobbava/wiki_clone_app]
-{<img src="https://travis-ci.org/anoobbava/wiki_clone_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/anoobbava/wiki_clone_app]
+{<img src="https://codeclimate.com/github/anoobbava/blog_app/badges/gpa.svg" />}[https://codeclimate.com/github/anoobbava/blog_app]
+{<img src="https://codeclimate.com/github/anoobbava/blog_app/badges/coverage.svg" />}[https://codeclimate.com/github/anoobbava/blog_app/coverage]
+{<img src="https://codeclimate.com/github/anoobbava/blog_app/badges/issue_count.svg" />}[https://codeclimate.com/github/anoobbava/blog_app]
+{<img src="https://travis-ci.org/anoobbava/blog_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/anoobbava/blog_app]
 
 
 == README
@@ -27,5 +27,5 @@ Main Aim of this Application is to
 
 ==== To run in Dev
 
-* Clone this page
+* Clone this project
 run <b>bundle exec rails db:seed</b>
