@@ -28,10 +28,10 @@ production:
   username: root
   password: root
 
-production:
+staging:
   adapter: postgresql
   encoding: unicode
-  database: pin_interest_app_db
+  database: blog_app_staging
   pool: 5
-  username: root
-  password: root
+  username: blog_app
+  password: blog_app
