@@ -5,7 +5,7 @@ require 'mina/puma'
 
 set :application_name, 'blog_app'
 set :domain, '35.185.45.69'
-set :deploy_to, '/home/blog_app'
+set :deploy_to, '/home/irfana_anoob/blog_app'
 set :repository, 'git@github.com:anoobbava/blog_app.git'
 set :branch, 'staging'
 set :user, 'irfana_anoob'
