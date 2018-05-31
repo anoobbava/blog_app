@@ -62,4 +62,7 @@ group :development do
 end
 group :production do
   gem 'pg'
+  gem 'daemons'
+  gem 'therubyracer'
+  gem 'unicorn'
 end
