@@ -54,12 +54,15 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
   gem 'mina', require: false
-  gem 'mina-puma', require: false,  github: 'untitledkingdom/mina-puma'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sqlite3'
   gem 'web-console', '>= 3.3.0'
+  gem 'mina-unicorn', require: false
 end
 group :production do
   gem 'pg'
+  gem 'daemons'
+  gem 'therubyracer'
+  gem 'unicorn'
 end
