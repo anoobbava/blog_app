@@ -22,7 +22,7 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { host: 'localhost', port: '3000' }
+  config.action_mailer.default_url_options = { host: ENV['STAGING_HOST'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'smtp.sendgrid.net', port: 587,
                                          domain: 'yourdomain.com',
