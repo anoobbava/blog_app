@@ -1,33 +1,68 @@
-require 'mina/rails'
 require 'mina/git'
+require 'mina/bundler'
+require 'mina/rails'
+require 'mina/unicorn'
 require 'mina/rvm'
-require 'mina/puma'
 
+# preset defaults
 set :application_name, 'blog_app'
-set :domain, '35.185.45.69'
-set :deploy_to, '/home/irfana_anoob/blog_app'
+set :domain, '35.231.73.143'
+set :deploy_to, '/home/anoob.bava/blog_app'
 set :repository, 'git@github.com:anoobbava/blog_app.git'
 set :branch, 'staging'
-set :user, 'irfana_anoob'
+set :user, 'anoob.bava'
 set :rails_env, 'staging'
-set :identity_file, "/home/anoobbava/public.pem"
+set :identity_file, "/home/anoobbava/Desktop/to_backup/pem_files/blog_app.pem"
 
-set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public/uploads')
-set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml', 'config/puma.rb')
+set :forward_agent, true
+set :port, '22'
+set :unicorn_pid, "#{fetch(:deploy_to)}/shared/pids/unicorn.pid"
 
-task :environment do
-  invoke :'rvm:use', 'ruby-2.4.1@default'
+set :shared_files, ['config/database.yml', 'log', 'config/secrets.yml', '.env', 'public/uploads']
+# rails pid
+set :pid_file, "#{fetch(:deploy_to)}/shared/pids/#{fetch(:rails_env)}.pid"
+
+
+task :remote_environment do
+invoke :'rvm:use', 'ruby-2.4.1@default'
 end
 
-task :setup do
-  command %[touch "#{fetch(:shared_path)}/config/database.yml"]
-  command %[touch "#{fetch(:shared_path)}/config/secrets.yml"]
-  command %[touch "#{fetch(:shared_path)}/config/puma.rb"]
-  comment "Be sure to edit '#{fetch(:shared_path)}/config/database.yml', 'secrets.yml' and puma.rb."
+task :setup => :remote_environment do
+
+   command %[mkdir -p "#{fetch(:deploy_to)}/shared/log"]
+  command %[chmod g+rx,u+rwx "#{fetch(:deploy_to)}/shared/log"]
+
+  command %[mkdir -p "#{fetch(:deploy_to)}/shared/config"]
+  command %[chmod g+rx,u+rwx "#{fetch(:deploy_to)}/shared/config"]
+
+  command %[mkdir -p "#{fetch(:deploy_to)}/shared/sockets"]
+  command %[chmod g+rx,u+rwx "#{fetch(:deploy_to)}/shared/sockets"]
+
+  command %[touch "#{fetch(:deploy_to)}/shared/config/database.yml"]
+  command  %[echo "-----> Be sure to edit 'shared/config/database.yml'."]
+
+  command %[touch "#{fetch(:deploy_to)}/shared/config/secrets.yml"]
+  command %[echo "-----> Be sure to edit 'shared/config/secrets.yml'."]
+
+  command %[touch "#{fetch(:deploy_to)}/shared/config/config.yml"]
+  command %[echo "-----> Be sure to edit 'shared/config/config.yml'."]
+
+  command %[touch "#{fetch(:deploy_to)}/.env"]
+  command %[echo "-----> Be sure to edit '.env"]
+
+  # sidekiq needs a place to store its pid file and log file
+  command %[mkdir -p "#{fetch(:deploy_to)}/shared/pids/"]
+  command %[chmod g+rx,u+rwx "#{fetch(:deploy_to)}/shared/pids"]
 end
 
-task :deploy do
+desc "Deploys the current version to the server."
+task :deploy => :remote_environment do
   deploy do
+
+    on :prepare do
+      command %[kill -9 `cat #{fetch(:pid_file)}`]
+    end
+
     comment "Deploying #{fetch(:application_name)} to #{fetch(:domain)}:#{fetch(:deploy_to)}"
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
@@ -37,8 +72,20 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      invoke :'puma:restart'
+      invoke :'unicorn:restart'
+      command "cd #{fetch(:deploy_to)}/current ; mkdir -p tmp ; touch tmp/restart.txt"
     end
   end
+end
 
+desc "Restart unicorn using 'upgrade'"
+task :restart => :remote_environment do
+  invoke 'unicorn:stop'
+  invoke 'unicorn:start'
+end
+
+desc "Seed data to the database"
+task :seed => :environment do
+  queue "cd #{fetch(:deploy_to)}/current"
+  queue "bundle exec rake db:seed RAILS_ENV=staging"
 end
