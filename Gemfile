@@ -30,7 +30,6 @@ gem 'simple_form', '~> 3.5'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'dotenv-rails'
-gem 'envyable'
 group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'rspec-rails'
