@@ -38,6 +38,9 @@ task :setup => :remote_environment do
   command %[mkdir -p "#{fetch(:deploy_to)}/shared/sockets"]
   command %[chmod g+rx,u+rwx "#{fetch(:deploy_to)}/shared/sockets"]
 
+  command %[mkdir -p "#{fetch(:deploy_to)}/public/uploads"]
+  command %[chmod g+rx,u+rwx "#{fetch(:deploy_to)}/public/uploads"]
+
   command %[touch "#{fetch(:deploy_to)}/shared/config/database.yml"]
   command  %[echo "-----> Be sure to edit 'shared/config/database.yml'."]
 
@@ -47,7 +50,7 @@ task :setup => :remote_environment do
   command %[touch "#{fetch(:deploy_to)}/shared/config/config.yml"]
   command %[echo "-----> Be sure to edit 'shared/config/config.yml'."]
 
-  command %[touch "#{fetch(:deploy_to)}/.env"]
+  command %[touch "#{fetch(:deploy_to)}/shared/.env"]
   command %[echo "-----> Be sure to edit '.env"]
 
   # sidekiq needs a place to store its pid file and log file
