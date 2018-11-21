@@ -1,8 +1,8 @@
-{<img src="https://api.codeclimate.com/v1/badges/ce8b4299fd25daa8e71a/maintainability" />}[https://codeclimate.com/github/anoobbava/blog_app/maintainability]
-
-{<img src="https://api.codeclimate.com/v1/badges/ce8b4299fd25daa8e71a/test_coverage" />}[https://codeclimate.com/github/anoobbava/blog_app/test_coverage]
-
+{<img src="https://codeclimate.com/github/anoobbava/blog_app/badges/gpa.svg" />}[https://codeclimate.com/github/anoobbava/blog_app]
+{<img src="https://codeclimate.com/github/anoobbava/blog_app/badges/coverage.svg" />}[https://codeclimate.com/github/anoobbava/blog_app/coverage]
+{<img src="https://codeclimate.com/github/anoobbava/blog_app/badges/issue_count.svg" />}[https://codeclimate.com/github/anoobbava/blog_app]
 {<img src="https://travis-ci.org/anoobbava/blog_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/anoobbava/blog_app]
+
 
 == README
 
@@ -27,5 +27,5 @@ Main Aim of this Application is to
 
 ==== To run in Dev
 
-* Clone this page
+* Clone this project
 run <b>bundle exec rails db:seed</b>

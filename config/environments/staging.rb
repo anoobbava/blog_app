@@ -25,7 +25,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: '35.231.73.143'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.smtp_settings = { address: 'smtp.sendgrid.net', 
+  config.action_mailer.smtp_settings = { address: 'smtp.sendgrid.net',
                                          port: 2525,
                                          domain: 'blog_app.com',
                                          user_name: ENV['SENDGRID_USERNAME'],
