@@ -44,6 +44,8 @@ class ArticlesController < ApplicationController
     @article.update_attributes(view_count: @article.view_count + 1)
     @comment = Comment.new(article: @article)
     @article_categories = @article.article_categories.includes(:category)
+    similar_article_ids = ArticleCategory.fetch_similar_category_items(@article_categories, @article)
+    @similar_article_objs = Article.where('id in (?)', similar_article_ids).includes(:user)
   end
 
   def update

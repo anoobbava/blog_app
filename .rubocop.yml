@@ -18,14 +18,6 @@ AllCops:
     - '**/**/*.yml'
   TargetRubyVersion: 2.4
 
-
-Style/Encoding:
-  EnforcedStyle: always
-  Enabled: true
-
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: always
-
 Style/Documentation:
   Enabled: false
 
