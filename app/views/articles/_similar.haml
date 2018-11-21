@@ -1,0 +1,29 @@
+%section.recomended-area.section
+  .container
+    .row
+      - @similar_article_objs.each do |article|
+        .col-lg-4.col-md-6
+          .card.h-100
+            .single-post.post-style-1
+              .blog-image
+                = image_tag(article.article_attachments.first.image_url.to_s)
+              %a.avatar{:href => "#"}
+                = image_tag(article.user.image_url)
+              .blog-info
+                %h4.title
+                  %a{:href => "#"}
+                    %b
+                      = link_to article.title, article
+                %ul.post-footer
+                  %li
+                    %a
+                      .glyphicon.glyphicon-heart
+                      = article.get_upvotes.size
+                  %li
+                    %a
+                      .glyphicon.glyphicon-comment
+                      = article.comments.count
+                  %li
+                    %a
+                      .glyphicon.glyphicon-eye-open
+                      = article.view_count
