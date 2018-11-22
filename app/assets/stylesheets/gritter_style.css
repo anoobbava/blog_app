@@ -1,0 +1,44 @@
+/* ****************************** */
+/* Gritter flash contents started */
+
+.gritter-flash .gritter-title{
+  text-shadow: none !important;
+  font-weight: 600;
+}
+
+.flash-danger .gritter-item.gritter-css3{
+  background-color: #fbe1e3;
+  border-color: #fbe1e3;
+  color: #e73d4a;
+}
+
+.flash-info .gritter-item.gritter-css3{
+  background-color: #D9EDF7;
+  border-color: #D9EDF7;
+  color: #31708F;
+}
+
+.flash-success .gritter-item.gritter-css3{
+  background-color: #DFF0D8;
+  border-color: #DFF0D8;
+  color: #31708F;
+}
+
+.flash-warning .gritter-item.gritter-css3{
+  background-color: #FCF8E3;
+  border-color: #FCF8E3;
+  color: #8A6D3C;
+}
+
+.gritter-css3 .gritter-close{
+  background-image: url(gritter-close.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 8px;
+  height: 8px;
+  right: 14px !important;
+  top: 14px !important;
+}
+
+/* Gritter flash contents ending */
+/* ***************************** */
